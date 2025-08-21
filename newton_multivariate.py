@@ -17,7 +17,9 @@ def get_gradient(x, fun):
     list
         Gradient of the function at point x.
     """
-    return jax.grad(fun)(x)
+    x_jax = jax.numpy.array(x)
+    gradient = jax.grad(fun)(x_jax)
+    return np.array(gradient)
 
 def get_hessian(x, fun):
     """
@@ -35,7 +37,9 @@ def get_hessian(x, fun):
     list
         Hessian of the function at point x.
     """
-    return jax.hessian(fun)(x)
+    x_jax = jax.numpy.array(x)
+    hessian = jax.hessian(fun)(x_jax)
+    return np.array(hessian)
 
 def multivariate_newton(x0, fun, max_iter=100, tol=1e-5):
     """
